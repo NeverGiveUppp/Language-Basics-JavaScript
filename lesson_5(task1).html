@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+
+    <script>
+        //1. Создать функцию, генерирующую шахматную доску. При этом можно использовать любые html-теги по своему желанию. 
+        // Доска должна быть разлинована соответствующим образом, т.е. чередовать черные и белые ячейки. 
+        // Строки должны нумероваться числами от 1 до 8, столбцы – латинскими буквами A, B, C, D, E, F, G, H.
+        let field = document.createElement('div');
+        document.body.appendChild(field);
+
+        for (let y = 0; y < 10; y++) {
+            for (let x = 0; x < 10; x++) {
+                let css = x ? {} : { clear: 'left' };
+                let content = '';
+                if (y == 0 || y == 9)
+                    content = x > 0 && x < 9 ? 'ABCDEFGH'.charAt(x - 1) : null;
+                else if (x == 0 || x == 9)
+                    content = 9 - y;
+                else css.background = (x + y) % 2 ? '#000' : '#fff';
+
+                let node = document.createElement('div');
+                css.width = '50px';
+                css.height = css.width;
+                css.textAlign = 'center';
+                css.float = 'left';
+                for (let i in css) node.style[i] = css[i];
+                if (content)
+                    node.innerHTML = content;
+                field.appendChild(node);
+            }
+        }
+
+    </script>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>
