@@ -1,0 +1,169 @@
+.menu {
+    padding-top: 20px;
+}
+
+
+#wrapper {
+    width: 50%;
+    margin: 10px;
+}
+
+#cart_content {
+    border: 1px solid #060;
+}
+
+.item_box {
+    border: 5px solid #999;
+    background-color: rgb(94, 26, 252);
+}
+
+
+p {
+    color: white;
+}
+
+.item_title {
+    color: white;
+}
+.add_item {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+    margin-top: 20px;
+  } 
+  a.button7:hover { background: rgb(53, 167, 110); }
+  a.button7:active {
+    background: rgb(33,147,90);
+    box-shadow: 0 3px rgb(33,147,90) inset;
+  }
+
+.my_open_basket {
+    margin-top: 100px;
+    height: 50px;
+    width: 100%;
+}
+
+.button {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 10px;
+}
+
+.accordion {
+    transform: translateZ(0);
+    background: white;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+.accordion>.accordion-toggle {
+    display: none;
+    position: absolute;
+    opacity: 0;
+}
+
+.accordion>label {
+    display: block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    background: #ecebec;
+    color: #555;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.accordion>label:after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid #555;
+    border-top: 2px solid #555;
+    transform: rotate(-135deg);
+    transition: 0.4s transform;
+}
+
+.accordion>section {
+    overflow: hidden;
+    height: 0;
+    transition: all .4s;
+}
+
+.accordion>.accordion-toggle:checked~label:after {
+    transform: rotate(45deg);
+    top: 16px;
+}
+
+.accordion>.accordion-toggle:checked~section {
+    height: 95px;
+
+}
+
+.accordion>section p {
+    margin: 15px 0;
+    padding: 0 20px;
+}
+
+
+
+
+/* Глянцевая копка */
+a.button1 {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: -1px -1px #000;
+    user-select: none;
+    padding: .1em 1em;
+    outline: none;
+    background-color: #000;
+    background-image: linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%), radial-gradient(190% 100% at 50% 0%, rgba(255,255,255,.7) 0%, rgba(255,255,255,.5) 50%, rgba(0,0,0,0) 50%);
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto;
+    background-position: 200% 0, 0 0;
+    box-shadow: rgba(0,0,0,.3) 0 2px 5px;
+    padding-bottom: 2%;
+  } 
+  a.button1:active {
+    top: 1px;
+    box-shadow: none;
+  }
+  a.button1:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0;
+    
+  }
+  .button {
+      padding-bottom: 20px;
+      padding-top: 50px;
+  }
