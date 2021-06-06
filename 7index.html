@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Basket</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="item_box">
+            <h3 class="item_title">Apple iphone 12</h3>
+            <p>Цена: <span class="item_price">800</span>$</p>
+            <button class="add_item" data-id="7">Добавить в корзину</button>
+        </div>
+        <div class="item_box">
+            <h3 class="item_title">Apple watch 5</h3>
+            <p>Цена: <span class="item_price">300</span>$</p>
+            <button class="add_item" data-id="2">Добавить в корзину</button>
+        </div>
+        <div class="item_box">
+            <h3 class="item_title">Book</h3>
+            <p>Цена: <span class="item_price">30</span>$</p>
+            <button class="add_item" data-id="5">Добавить в корзину</button>
+        </div>
+        <button class="button" id="checkout"></button> &nbsp; <button id="clear_cart" class="button1">Очистить
+            корзину</button></p>
+        <div class="field">
+            <div id="wrapper">
+                <a href='my_basket.html' class="button1">Переход на
+                    страницу оформления</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+
+    <script type="text/javascript">
+        var d = document,
+            itemBox = d.querySelectorAll('.item_box'),
+            cartCont = d.getElementById('cart_content');
+
+        function addEvent(elem, type, handler) {
+            if (elem.addEventListener) {
+                elem.addEventListener(type, handler, false);
+            } else {
+                elem.attachEvent('on' + type, function () { handler.call(elem); });
+            }
+            return false;
+        }
+
+        function getCartData() {
+            return JSON.parse(localStorage.getItem('cart'));
+        }
+
+        function setCartData(o) {
+            localStorage.setItem('cart', JSON.stringify(o));
+            return false;
+        }
+        // Добавляем товар в корзину
+        function addToCart(e) {
+            var cartData = getCartData() || {},
+                parentBox = this.parentNode,
+                itemId = this.getAttribute('data-id'),
+                itemTitle = parentBox.querySelector('.item_title').innerHTML, // название товара
+                itemPrice = parentBox.querySelector('.item_price').innerHTML; // стоимость товара
+            if (cartData.hasOwnProperty(itemId)) { // если такой товар уже в корзине, то добавляем +1 к его количеству
+                cartData[itemId][2] += 1;
+            } else {
+                // openCart()// если товара в корзине еще нет, то добавляем в объект
+                cartData[itemId] = [itemTitle, itemPrice, 1];
+            }
+            // Обновляем данные в LocalStorage
+            if (!setCartData(cartData)) {
+            }
+            return false;
+        }
+
+        for (var i = 0; i < itemBox.length; i++) {
+            addEvent(itemBox[i].querySelector('.add_item'), 'click', addToCart);
+        }
+        // Открываем корзину со списком добавленных товаро
+        function openCart(e) {
+
+            var cartData = getCartData(), // вытаскиваем все данные корзины
+                totalItems = '';
+            console.log(JSON.stringify(cartData));
+
+
+            if (cartData !== null) {
+                totalItems = '<table class="shopping_list"><tr><th>Наименование</th><th>Цена</th><th>Кол-во</th><th>Cтоймость</th></tr>';
+                for (var items in cartData) {
+                    totalItems += '<tr>';
+                    for (var i = 0; i < cartData[items].length; i++) {
+                        totalItems += '<td>' + cartData[items][i] + '</td>';
+                    }
+                    //--------
+                    totalItems += `<td>${cartData[items][1] * cartData[items][2]}</td>`;
+                    //--------
+                    totalItems += '</tr>';
+                }
+                totalItems += '<table>';
+                cartCont.innerHTML = totalItems;
+            } else {
+                // если корзина пуста
+                cartCont.innerHTML = 'Корзина пуста!!!';
+            }
+            return false;
+        }
+        /* Открыть корзину */
+        addEvent(d.getElementById('checkout'), 'click', openCart);
+        /* Очистить корзину */
+        addEvent(d.getElementById('clear_cart'), 'click', function (e) {
+            localStorage.removeItem('cart');
+            cartCont.innerHTML = 'Корзина очищена.';
+        });
+    </script>
+</body>
+
+</html>
